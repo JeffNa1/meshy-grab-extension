@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "MeshyGrab Clone - 3D Model Ripper",
+  "version": "1.0.0",
+  "description": "Bắt trộm và tải file model 3D (GLB) trực tiếp từ Meshy.ai không tốn credit",
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://*.meshy.ai/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.meshy.ai/*"],
+      "js": ["content_main.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://*.meshy.ai/*"],
+      "js": ["content_isolated.js"],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
